@@ -1,0 +1,166 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    {# SEO — GoGoTech · Soluciones TI #}
+    <title>{% block title %}GoGoTech · Soluciones TI — Servicio técnico en Maipú{% endblock %}</title>
+    <meta name="description" content="{% block description %}GoGoTech Soluciones TI: servicio técnico de computadores y notebooks en Maipú. Reparación, upgrades de SSD y RAM, formateo, eliminación de virus y mantención. Reserva tu hora.{% endblock %}">
+    <meta name="keywords" content="servicio técnico Maipú, reparación de computadores, reparación de notebook, instalación SSD, mejora RAM, instalación Windows, eliminación de virus, mantención preventiva, GoGoTech">
+    <meta name="author" content="GoGoTech Soluciones TI">
+    <meta name="theme-color" content="#0A0A0A">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="GoGoTech · Soluciones TI">
+    <meta property="og:description" content="Tu PC en expertas manos. Rendimiento. Confianza. Resultados.">
+    <meta property="og:locale" content="es_CL">
+    <meta property="og:site_name" content="GoGoTech">
+
+    <!-- Favicon (diamante verde provisional — reemplazar por logo real) -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect x='22' y='22' width='56' height='56' rx='10' transform='rotate(45 50 50)' fill='%235BD61E'/></svg>">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
+    {# JSON-LD — negocio local #}
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "GoGoTech Soluciones TI",
+      "description": "Servicio técnico de computadores y notebooks: reparación, upgrades, formateo, eliminación de virus y mantención.",
+      "telephone": "+56956392509",
+      "email": "diegodinamarca.a@gmail.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Av. Pajaritos 2151",
+        "addressLocality": "Maipú",
+        "addressRegion": "Región Metropolitana",
+        "addressCountry": "CL"
+      },
+      "openingHours": ["Mo-Fr 10:00-19:00", "Sa 10:00-14:00"],
+      "priceRange": "$$"
+    }
+    </script>
+
+    {% block extra_head %}{% endblock %}
+</head>
+<body>
+
+<a href="#main" class="skip-link">Saltar al contenido</a>
+
+<!-- ============================================================
+     NAVBAR
+============================================================ -->
+<nav class="navbar navbar-expand-lg fixed-top" id="mainNavbar">
+    <div class="container">
+        <a class="navbar-brand" href="{% url 'home' %}" aria-label="GoGoTech — inicio">
+            <span class="logo-diamond"><i class="bi bi-pc-display-horizontal"></i></span>
+            <span class="logo-text">GoGo<span class="logo-accent">Tech</span><small>Soluciones TI</small></span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarNav" aria-controls="navbarNav"
+                aria-expanded="false" aria-label="Abrir menú">
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
+                <li class="nav-item"><a class="nav-link {% if active == 'inicio' %}active{% endif %}" href="{% url 'home' %}">Inicio</a></li>
+                <li class="nav-item"><a class="nav-link {% if active == 'servicios' %}active{% endif %}" href="{% url 'servicios' %}">Servicios</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'home' %}#nosotros">Nosotros</a></li>
+                <li class="nav-item"><a class="nav-link {% if active == 'contacto' %}active{% endif %}" href="{% url 'contacto' %}">Contacto</a></li>
+                <li class="nav-item ms-lg-3">
+                    <a class="btn btn-green navbar-cta" href="{% url 'contacto' %}">Solicitar servicio</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- ============================================================
+     CONTENIDO
+============================================================ -->
+<main id="main">
+    {% block content %}{% endblock %}
+</main>
+
+<!-- ============================================================
+     FOOTER
+============================================================ -->
+<footer class="footer-main">
+    <div class="container">
+        <div class="row gy-5">
+
+            <div class="col-lg-4 col-md-6">
+                <a class="navbar-brand footer-brand" href="{% url 'home' %}">
+                    <span class="logo-diamond"><i class="bi bi-pc-display-horizontal"></i></span>
+                    <span class="logo-text">GoGo<span class="logo-accent">Tech</span><small>Soluciones TI</small></span>
+                </a>
+                <p class="footer-tagline">Tu PC en expertas manos.<br>Soluciones reales, soporte de verdad.</p>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <h6 class="footer-heading">Contáctanos</h6>
+                <ul class="footer-contact">
+                    <li><i class="bi bi-telephone-fill"></i> <a href="tel:+56956392509">+56 9 5639 2509</a></li>
+                    <li><i class="bi bi-envelope-fill"></i> <a href="mailto:diegodinamarca.a@gmail.com">diegodinamarca.a@gmail.com</a></li>
+                    <li><i class="bi bi-geo-alt-fill"></i> <span>Av. Pajaritos 2151, Maipú,<br>Región Metropolitana, Chile</span></li>
+                </ul>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <h6 class="footer-heading">Enlaces</h6>
+                <ul class="footer-links">
+                    <li><a href="{% url 'home' %}">Inicio</a></li>
+                    <li><a href="{% url 'servicios' %}">Servicios</a></li>
+                    <li><a href="{% url 'home' %}#nosotros">Nosotros</a></li>
+                    <li><a href="{% url 'contacto' %}">Contacto</a></li>
+                </ul>
+            </div>
+
+            <div class="col-lg-2 col-md-6">
+                <h6 class="footer-heading">Síguenos</h6>
+                <div class="footer-social">
+                    {# TODO: reemplazar por las redes reales de GoGoTech #}
+                    <a href="https://instagram.com/" class="social-link" aria-label="Instagram" target="_blank" rel="noopener"><i class="bi bi-instagram"></i></a>
+                    <a href="https://facebook.com/" class="social-link" aria-label="Facebook" target="_blank" rel="noopener"><i class="bi bi-facebook"></i></a>
+                    <a href="https://wa.me/56956392509" class="social-link" aria-label="WhatsApp" target="_blank" rel="noopener"><i class="bi bi-whatsapp"></i></a>
+                </div>
+            </div>
+
+        </div>
+        <hr class="footer-divider">
+        <div class="footer-bottom">
+            <p>© 2025 GOGOTECH_TI. Todos los derechos reservados · Desarrollado por <a href="https://gogodevs.cl" target="_blank" rel="noopener">GoGoDevS</a></p>
+        </div>
+    </div>
+</footer>
+
+<!-- WhatsApp flotante -->
+<a href="https://wa.me/56956392509?text=Hola%20GoGoTech%2C%20necesito%20ayuda%20con%20mi%20equipo"
+   class="whatsapp-float" target="_blank" rel="noopener" aria-label="Contactar por WhatsApp">
+    <i class="bi bi-whatsapp"></i>
+    <span class="whatsapp-tooltip">¿Hablamos?</span>
+</a>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="{% static 'js/main.js' %}"></script>
+{% block extra_scripts %}{% endblock %}
+</body>
+</html>

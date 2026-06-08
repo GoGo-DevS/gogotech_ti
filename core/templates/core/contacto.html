@@ -1,0 +1,169 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}Reserva tu hora — GoGoTech Soluciones TI{% endblock %}
+{% block description %}Reserva tu hora en GoGoTech: rápido, fácil y sin filas. Av. Pajaritos 2151, Maipú. Teléfono +56 9 5639 2509. Atención Lun a Vie 10-19 y Sáb 10-14.{% endblock %}
+
+{% block content %}
+
+{# HERO — RESERVA #}
+<section class="page-hero hero-reserva">
+    <div class="hero-overlay" aria-hidden="true"></div>
+    <div class="container">
+        <div class="hero-content reveal">
+            <span class="hero-ico"><i class="bi bi-calendar-check"></i></span>
+            <h1 class="display-title">Reserva<br><span class="text-green">tu hora</span></h1>
+            <p class="hero-sub">Rápido, fácil y sin filas.</p>
+        </div>
+    </div>
+</section>
+
+{# RESERVA + CONTACTO DIRECTO #}
+<section class="section section-tight">
+    <div class="container">
+        <div class="row g-4 align-items-stretch">
+
+            {# ---- Formulario de reserva ---- #}
+            <div class="col-lg-6 reveal">
+                <div class="panel">
+                    <h2 class="panel-title">Reserva <span class="text-green">tu hora</span></h2>
+                    <form id="reservaForm" data-wa="56956392509" novalidate>
+                        <div class="mb-3">
+                            <label for="r-nombre" class="form-label">Nombre completo</label>
+                            <div class="input-icon"><i class="bi bi-person"></i>
+                                <input type="text" class="form-control" id="r-nombre" name="nombre" placeholder="Tu nombre" required>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="r-fono" class="form-label">Teléfono</label>
+                            <div class="input-icon"><i class="bi bi-telephone"></i>
+                                <input type="tel" class="form-control" id="r-fono" name="telefono" placeholder="Tu número" required>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="r-servicio" class="form-label">Servicio</label>
+                            <select class="form-select" id="r-servicio" name="servicio">
+                                <option value="" selected>Selecciona un servicio</option>
+                                {% for s in servicios %}
+                                <option value="{{ s.nombre }}">{{ s.nombre }}</option>
+                                {% endfor %}
+                                <option value="Soporte tecnológico (por hora)">Soporte tecnológico (por hora)</option>
+                                <option value="Otro / no estoy seguro">Otro / no estoy seguro</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="r-modalidad" class="form-label">Modalidad de atención</label>
+                            <select class="form-select" id="r-modalidad" name="modalidad">
+                                <option value="" selected>¿Cómo prefieres que te atendamos?</option>
+                                {% for t in servicio_tecnico %}
+                                <option value="{{ t.modalidad }} ({{ t.extra }})">{{ t.modalidad }} — {{ t.extra }} · desde {{ t.directo }} UF</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="row g-3 mb-3">
+                            <div class="col-sm-6">
+                                <label for="r-fecha" class="form-label">Fecha</label>
+                                <div class="input-icon"><i class="bi bi-calendar3"></i>
+                                    <input type="date" class="form-control" id="r-fecha" name="fecha">
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <label for="r-hora" class="form-label">Hora</label>
+                                <div class="input-icon"><i class="bi bi-clock"></i>
+                                    <input type="time" class="form-control" id="r-hora" name="hora">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="r-msg" class="form-label">Mensaje (opcional)</label>
+                            <div class="input-icon align-top"><i class="bi bi-chat-left-text"></i>
+                                <textarea class="form-control" id="r-msg" name="mensaje" rows="3" placeholder="Cuéntanos qué necesitas"></textarea>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-green btn-lg w-100"><i class="bi bi-calendar-check"></i> Reservar hora</button>
+                        <p class="form-note">Al reservar se abrirá WhatsApp con tu solicitud lista para confirmar.</p>
+                    </form>
+                </div>
+            </div>
+
+            {# ---- Contacto directo ---- #}
+            <div class="col-lg-6 reveal">
+                <div class="panel">
+                    <h2 class="panel-title">Contacto <span class="text-green">directo</span></h2>
+                    <ul class="contact-list">
+                        <li>
+                            <span class="contact-ico"><i class="bi bi-telephone-fill"></i></span>
+                            <div><span class="contact-k">Teléfono</span><a href="tel:+56956392509" class="contact-v">+56 9 5639 2509</a></div>
+                        </li>
+                        <li>
+                            <span class="contact-ico"><i class="bi bi-envelope-fill"></i></span>
+                            <div><span class="contact-k">Email</span><a href="mailto:diegodinamarca.a@gmail.com" class="contact-v">diegodinamarca.a@gmail.com</a></div>
+                        </li>
+                        <li>
+                            <span class="contact-ico"><i class="bi bi-geo-alt-fill"></i></span>
+                            <div><span class="contact-k">Dirección</span><span class="contact-v">Av. Pajaritos 2151, Maipú,<br>Región Metropolitana, Chile</span></div>
+                        </li>
+                    </ul>
+
+                    <hr class="panel-divider">
+
+                    <h3 class="panel-subtitle">Horarios de atención</h3>
+                    <ul class="contact-list">
+                        <li>
+                            <span class="contact-ico"><i class="bi bi-clock-fill"></i></span>
+                            <div><span class="contact-k">Lunes a Viernes</span><span class="contact-v text-green">10:00 – 19:00</span></div>
+                        </li>
+                        <li>
+                            <span class="contact-ico"><i class="bi bi-clock-fill"></i></span>
+                            <div><span class="contact-k">Sábado</span><span class="contact-v text-green">10:00 – 14:00</span></div>
+                        </li>
+                    </ul>
+
+                    <a href="https://wa.me/56956392509?text=Hola%20GoGoTech%2C%20quiero%20agendar%20una%20hora"
+                       class="btn btn-green btn-lg w-100 mt-3" target="_blank" rel="noopener">
+                        <i class="bi bi-whatsapp"></i> Escríbenos por WhatsApp
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{# MAPA #}
+<section class="section section-tight">
+    <div class="container">
+        <div class="map-wrap reveal">
+            <iframe
+                title="Ubicación de GoGoTech en Maipú"
+                src="https://maps.google.com/maps?q=Av.%20Pajaritos%202151%2C%20Maip%C3%BA&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                width="100%" height="380" style="border:0;" allowfullscreen="" loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+    </div>
+</section>
+
+{# FEATURES #}
+<section class="section section-tight">
+    <div class="container">
+        <div class="features-row features-strip">
+            <div class="feature reveal">
+                <span class="feature-ring"><i class="bi bi-speedometer2"></i></span>
+                <h3>Atención rápida</h3>
+            </div>
+            <div class="feature reveal">
+                <span class="feature-ring"><i class="bi bi-patch-check"></i></span>
+                <h3>Técnicos expertos</h3>
+            </div>
+            <div class="feature reveal">
+                <span class="feature-ring"><i class="bi bi-shield-check"></i></span>
+                <h3>Garantía total</h3>
+            </div>
+            <div class="feature reveal">
+                <span class="feature-ring"><i class="bi bi-hand-thumbs-up"></i></span>
+                <h3>Máxima calidad</h3>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

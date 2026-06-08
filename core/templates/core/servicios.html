@@ -1,0 +1,142 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}Servicios y tarifas — GoGoTech Soluciones TI{% endblock %}
+{% block description %}Servicios técnicos GoGoTech y tarifas claras: servicio técnico con tarifa plana por modalidad (en taller, retiro, a domicilio) y soporte tecnológico por hora. Precios en UF.{% endblock %}
+
+{% block content %}
+
+{# HERO — SERVICIOS #}
+<section class="page-hero hero-servicios">
+    <div class="hero-overlay" aria-hidden="true"></div>
+    <div class="container">
+        <div class="hero-content reveal">
+            <h1 class="display-title">Nuestros<br><span class="text-green">servicios</span></h1>
+            <span class="title-underline"></span>
+        </div>
+    </div>
+</section>
+
+{# QUÉ RESOLVEMOS — vitrina de servicios #}
+<section class="section section-tight">
+    <div class="container">
+        <div class="section-head reveal">
+            <span class="eyebrow">Qué resolvemos</span>
+            <h2 class="section-title">De la falla más simple<br>a la <span class="text-green">más exigente</span></h2>
+            <p class="section-lead">Estos son los trabajos que realizamos. El valor depende de la modalidad
+                de atención que elijas (más abajo), no del tiempo que tome.</p>
+        </div>
+        <div class="row g-4">
+            {% for s in servicios %}
+            <div class="col-6 col-lg-3 reveal">
+                <article class="service-card">
+                    <div class="service-thumb">
+                        <img src="{% static s.archivo %}" alt="{{ s.nombre }}" loading="lazy">
+                    </div>
+                    <div class="service-body">
+                        <h3 class="service-name">{{ s.nombre }}</h3>
+                        {% if s.tipo == 'plana' %}
+                        <span class="service-tag service-tag-plana">Tarifa plana</span>
+                        {% else %}
+                        <span class="service-tag service-tag-repuesto">+ Repuesto</span>
+                        {% endif %}
+                        <a class="btn btn-green w-100"
+                           href="https://wa.me/56956392509?text={{ 'Hola GoGoTech, quiero cotizar: '|add:s.nombre|urlencode }}"
+                           target="_blank" rel="noopener">Cotizar</a>
+                    </div>
+                </article>
+            </div>
+            {% endfor %}
+        </div>
+        <p class="service-legend reveal">
+            <span class="service-tag service-tag-plana">Tarifa plana</span> entra en el precio por modalidad ·
+            <span class="service-tag service-tag-repuesto">+ Repuesto</span> suma el costo del componente (a cotizar)
+        </p>
+    </div>
+</section>
+
+{# TARIFAS · SERVICIO TÉCNICO (plano por modalidad) #}
+<section id="tarifas" class="section section-tight section-alt">
+    <div class="container">
+        <div class="section-head reveal">
+            <span class="eyebrow">Tarifas · Servicio Técnico</span>
+            <h2 class="section-title">Tarifa plana, <span class="text-green">no por hora</span></h2>
+            <p class="section-lead">Pagas por el servicio resuelto, no por el tiempo que tome.
+                El valor depende solo de cómo prefieras que te atendamos.</p>
+        </div>
+        <div class="tarifas reveal">
+            <div class="tarifas-head">
+                <span></span>
+                <span class="th th-main">Pago directo</span>
+                <span class="th">Con boleta</span>
+            </div>
+            {% for t in servicio_tecnico %}
+            <div class="tarifa">
+                <div class="tarifa-info">
+                    <h4>{{ t.modalidad }} <span class="tarifa-extra">{{ t.extra }}</span></h4>
+                    <p>{{ t.desc }}</p>
+                </div>
+                <div class="tarifa-precios">
+                    <div class="precio precio-main"><span class="precio-tag">Pago directo</span><span class="precio-uf">{{ t.directo }} UF</span></div>
+                    <div class="precio"><span class="precio-tag">Con boleta</span><span class="precio-uf">{{ t.boleta }} UF</span></div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+{# TARIFAS · SOPORTE TECNOLÓGICO (por hora) #}
+<section class="section section-tight">
+    <div class="container">
+        <div class="section-head reveal">
+            <span class="eyebrow">Tarifas · Soporte Tecnológico</span>
+            <h2 class="section-title">Soporte <span class="text-green">por hora</span></h2>
+            <p class="section-lead">Para asesorías, configuraciones y soporte continuo, presencial o remoto.</p>
+        </div>
+        <div class="tarifas reveal">
+            <div class="tarifas-head">
+                <span></span>
+                <span class="th th-main">Pago directo</span>
+                <span class="th">Con boleta</span>
+            </div>
+            {% for t in soporte %}
+            <div class="tarifa">
+                <div class="tarifa-info">
+                    <h4>{{ t.modalidad }} <span class="tarifa-extra">{{ t.extra }}</span></h4>
+                </div>
+                <div class="tarifa-precios">
+                    <div class="precio precio-main"><span class="precio-tag">Pago directo</span><span class="precio-uf">{{ t.directo }} UF<small>/hora</small></span></div>
+                    <div class="precio"><span class="precio-tag">Con boleta</span><span class="precio-uf">{{ t.boleta }} UF<small>/hora</small></span></div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <p class="tarifa-nota reveal">
+            <i class="bi bi-info-circle"></i>
+            Valores en UF (se calculan al valor del día de pago). Los <strong>repuestos</strong>
+            (SSD, RAM, GPU, fuente de poder, placa madre, pantalla) se cotizan aparte según el
+            componente. <strong>Con boleta</strong> incluye documento tributario (SII).
+        </p>
+    </div>
+</section>
+
+{# CTA WHATSAPP #}
+<section class="section section-tight">
+    <div class="container">
+        <div class="wa-cta reveal">
+            <div class="wa-cta-left">
+                <span class="wa-cta-icon"><i class="bi bi-whatsapp"></i></span>
+                <h2 class="wa-cta-title">¿Necesitas algo más<br><span class="text-green">rápido?</span></h2>
+            </div>
+            <div class="wa-cta-right">
+                <h3>Escríbenos por WhatsApp</h3>
+                <p>Te respondemos al instante.</p>
+                <a href="https://wa.me/56956392509?text=Hola%20GoGoTech%2C%20necesito%20ayuda%20con%20mi%20equipo"
+                   class="btn btn-green" target="_blank" rel="noopener">Hablar ahora</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

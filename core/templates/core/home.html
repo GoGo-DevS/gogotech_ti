@@ -1,0 +1,122 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block content %}
+
+{# HERO — INICIO #}
+<section class="page-hero hero-inicio">
+    <div class="hero-overlay" aria-hidden="true"></div>
+    <div class="container">
+        <div class="hero-content reveal">
+            <h1 class="display-title">Tu PC en<br><span class="text-green">expertas</span> manos</h1>
+            <p class="hero-sub">Rendimiento. Confianza. Resultados.</p>
+            <div class="hero-actions">
+                <a href="{% url 'contacto' %}" class="btn btn-green btn-lg"><i class="bi bi-check2-circle"></i> Solicitar servicio</a>
+                <a href="{% url 'servicios' %}" class="btn btn-ghost btn-lg">Ver servicios</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+{# FEATURES #}
+<section class="section section-tight">
+    <div class="container">
+        <div class="features-row">
+            <div class="feature reveal">
+                <span class="feature-ring"><i class="bi bi-shield-check"></i></span>
+                <h3>Garantía<br>total</h3>
+            </div>
+            <div class="feature reveal">
+                <span class="feature-ring"><i class="bi bi-clock-history"></i></span>
+                <h3>Atención<br>rápida</h3>
+            </div>
+            <div class="feature reveal">
+                <span class="feature-ring"><i class="bi bi-patch-check"></i></span>
+                <h3>Técnicos<br>expertos</h3>
+            </div>
+            <div class="feature reveal">
+                <span class="feature-ring"><i class="bi bi-hand-thumbs-up"></i></span>
+                <h3>Máxima<br>calidad</h3>
+            </div>
+        </div>
+    </div>
+</section>
+
+{# CATEGORÍAS (3 tarjetas con imagen) #}
+<section class="section section-tight">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-md-4 reveal">
+                <a href="{% url 'servicios' %}" class="cat-card">
+                    <img src="{% static 'img/cat-reparacion.jpg' %}" alt="Reparación de equipos" loading="lazy">
+                    <span class="cat-label">Reparación</span>
+                </a>
+            </div>
+            <div class="col-md-4 reveal">
+                <a href="{% url 'servicios' %}" class="cat-card">
+                    <img src="{% static 'img/cat-mejoras.jpg' %}" alt="Mejoras y upgrades" loading="lazy">
+                    <span class="cat-label">Mejoras</span>
+                </a>
+            </div>
+            <div class="col-md-4 reveal">
+                <a href="{% url 'servicios' %}" class="cat-card">
+                    <img src="{% static 'img/cat-mantencion.jpg' %}" alt="Mantención preventiva" loading="lazy">
+                    <span class="cat-label">Mantención</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+{# NOSOTROS #}
+<section id="nosotros" class="section">
+    <div class="container">
+        <div class="row g-4 g-lg-5 align-items-stretch">
+            <div class="col-lg-6 reveal">
+                <img src="{% static 'img/local.jpg' %}" alt="Local de GoGoTech en Maipú" class="about-img" loading="lazy">
+            </div>
+            <div class="col-lg-6 reveal">
+                <span class="eyebrow">Nosotros</span>
+                <h2 class="section-title"><span class="text-green">Comprometidos</span><br>con tu tecnología</h2>
+                <p class="section-lead">Soluciones reales, soporte de verdad.</p>
+                <p class="about-text">En GoGoTech no improvisamos: diagnosticamos, te explicamos con claridad
+                    y entregamos tu equipo funcionando como debe. Atendemos personas y empresas en
+                    Maipú y toda la Región Metropolitana, con garantía y trato cercano.</p>
+                <div class="about-actions">
+                    <a href="{% url 'servicios' %}" class="btn btn-green">Ver servicios</a>
+                    <a href="{% url 'contacto' %}" class="btn btn-ghost">Contáctanos</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{# TESTIMONIOS #}
+<section class="section section-tight section-alt">
+    <div class="container">
+        <div class="section-head reveal">
+            <span class="eyebrow">Testimonios</span>
+            <h2 class="section-title">Clientes que <span class="text-green">confían</span></h2>
+        </div>
+        <div class="testi-row">
+            <div class="testi reveal"><div class="stars">★★★★★</div><strong>Camila R.</strong></div>
+            <div class="testi reveal"><div class="stars">★★★★★</div><strong>Diego M.</strong></div>
+            <div class="testi reveal"><div class="stars">★★★★★</div><strong>Felipe A.</strong></div>
+            <div class="testi reveal"><div class="stars">★★★★★</div><strong>Javiera P.</strong></div>
+            <div class="testi reveal"><div class="stars">★★★★★</div><strong>Matías G.</strong></div>
+        </div>
+    </div>
+</section>
+
+{# CTA FINAL #}
+<section class="cta-band">
+    <div class="hero-overlay" aria-hidden="true"></div>
+    <div class="container">
+        <div class="cta-inner reveal">
+            <h2 class="cta-title">¿Listo para mejorar<br><span class="text-green">tu experiencia?</span></h2>
+            <a href="{% url 'contacto' %}" class="btn btn-green btn-lg"><i class="bi bi-check2-circle"></i> Solicitar servicio</a>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
